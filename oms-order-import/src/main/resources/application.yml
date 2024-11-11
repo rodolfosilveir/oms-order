@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: oms-order-import
+  datasource:
+    url: ${ORDER_DB_URL:jdbc:postgresql://localhost:54322/import-db}
+    username: ${ORDER_DB_USER:order-import-user}
+    password: ${ORDER_DB_PASSWORD:Fkasnm&35@fasdk3k4v}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+    producer:
+      topic:
+        oms-order-import-topic: ${OMS-ORDER-IMPORT-TOPIC:oms-order-import-topic}
+    
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:oms-order-import}
+      topic:
+        oms-order-import-topic: ${OMS-ORDER-IMPORT-TOPIC:oms-order-import-topic}
+
+schedules:
+  order-sended:
+    verification:
+      delay: ${ORDER_SENDED_VERIFICATION_DELAY:180}

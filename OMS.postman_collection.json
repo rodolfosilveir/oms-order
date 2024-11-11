@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "f29017a9-cdce-403f-a1a7-9562d0a35fab",
+		"name": "OMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13110807"
+	},
+	"item": [
+		{
+			"name": "Import",
+			"item": [
+				{
+					"name": "Import Order 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order-id\": \"38d954d9-fe35-4531-9ec9-809282aee963\",\r\n  \"store\": \"Boteco do Denis\",\r\n  \"status\": \"sended\",\r\n  \"origin_system\": \"application\",\r\n  \"pickup\": \"delivery\",\r\n  \"items\": [\r\n    {\r\n      \"id\": 1,\r\n      \"quantity\": 2\r\n    },\r\n    {\r\n      \"id\": 2,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"id\": 16,\r\n      \"quantity\": 2\r\n    },\r\n    {\r\n      \"id\": 21,\r\n      \"quantity\": 3\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Order 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order-id\": \"ce95ff95-16fa-42da-b77e-a8c3001c4307\",\r\n  \"store\": \"Mercadinho Pracinha\",\r\n  \"status\": \"sended\",\r\n  \"origin_system\": \"application\",\r\n  \"pickup\": \"delivery\",\r\n  \"items\": [\r\n    {\r\n      \"id\": 2,\r\n      \"quantity\": 10\r\n    },\r\n    {\r\n      \"id\": 8,\r\n      \"quantity\": 15\r\n    },\r\n    {\r\n      \"id\": 11,\r\n      \"quantity\": 20\r\n    },\r\n    {\r\n      \"id\": 14,\r\n      \"quantity\": 10\r\n    },\r\n    {\r\n      \"id\": 21,\r\n      \"quantity\": 5\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Order 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"order-id\": \"3f9f7690-703d-4a97-b4b5-8ab4392468ba\",\r\n  \"store\": \"Adega Galera\",\r\n  \"status\": \"sended\",\r\n  \"origin_system\": \"application\",\r\n  \"pickup\": \"delivery\",\r\n  \"items\": [\r\n    {\r\n      \"id\": 4,\r\n      \"quantity\": 5\r\n    },\r\n    {\r\n      \"id\": 17,\r\n      \"quantity\": 12\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"import"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get Order 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/order/38d954d9-fe35-4531-9ec9-809282aee963",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"order",
+								"38d954d9-fe35-4531-9ec9-809282aee963"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/ce95ff95-16fa-42da-b77e-a8c3001c4307",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"ce95ff95-16fa-42da-b77e-a8c3001c4307"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Extra",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/f9d1c725-8bae-4a25-92ab-212b6711640c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"f9d1c725-8bae-4a25-92ab-212b6711640c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order 3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/3f9f7690-703d-4a97-b4b5-8ab4392468ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"3f9f7690-703d-4a97-b4b5-8ab4392468ba"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

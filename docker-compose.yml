@@ -1,0 +1,96 @@
+services:
+  import-db:
+    image: postgres:14
+    container_name: import-db
+    environment:
+      POSTGRES_DB: import-db
+      POSTGRES_USER: order-import-user
+      POSTGRES_PASSWORD: Fkasnm&35@fasdk3k4v
+    ports:
+      - "54322:5432"
+    volumes:
+      - import-data:/var/lib/postgresql/data
+
+  order-db:
+    image: postgres:14
+    container_name: order-db
+    environment:
+      POSTGRES_DB: order-db
+      POSTGRES_USER: order-manager-user
+      POSTGRES_PASSWORD: bha@ycb3czy5gfn-YQN
+    ports:
+      - "54321:5432"
+    volumes:
+      - order-data:/var/lib/postgresql/data
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT_DOCKER:PLAINTEXT,PLAINTEXT_EXTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT_DOCKER://kafka:9092,PLAINTEXT_EXTERNAL://localhost:29092
+      KAFKA_LISTENERS: PLAINTEXT_DOCKER://0.0.0.0:9092,PLAINTEXT_EXTERNAL://0.0.0.0:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_DOCKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    links:
+      - zookeeper
+
+  oms-order-import:
+    build: ./oms-order-import
+    container_name: oms-order-import
+    environment:
+      ORDER_DB_URL: jdbc:postgresql://import-db:5432/import-db
+      ORDER_DB_USER: order-import-user
+      ORDER_DB_PASSWORD: Fkasnm&35@fasdk3k4v
+    depends_on:
+      - import-db
+      - order-db
+      - kafka
+      - zookeeper
+    ports:
+      - "8080:8080"
+    links:
+      - import-db
+      - order-db
+      - kafka
+      - zookeeper
+
+  oms-order-manager:
+    build: ./oms-order-manager
+    container_name: oms-order-manager
+    environment:
+      ORDER_DB_URL: jdbc:postgresql://order-db:5432/order-db
+      ORDER_DB_USER: order-manager-user
+      ORDER_DB_PASSWORD: bha@ycb3czy5gfn-YQN
+    depends_on:
+      - import-db
+      - order-db
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8081"
+    links:
+      - import-db
+      - order-db
+      - kafka
+      - zookeeper
+
+volumes:
+  import-data:
+  order-data:
