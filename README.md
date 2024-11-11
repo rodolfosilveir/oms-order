@@ -1,4 +1,4 @@
-# Bills Manager
+# Projeto OMS
 
 `Microserviços responsáveis pelo gerenciamento de pedidos`
 
